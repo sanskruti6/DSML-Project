@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <table>
+        <tr>
+            <th>Bus ID</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Date</th>
+            <th>Seats Available</th>
+            <th>Book</th>
+        </tr>
+        {% for bus in buses %}
+        <tr>
+            <td>{{ bus[0] }}</td>
+            <td>{{ bus[1] }}</td>
+            <td>{{ bus[2] }}</td>
+            <td>{{ bus[3] }}</td>
+            <td>{{ bus[4] }}</td>
+            <td>
+                <form action="/book" method="POST">
+                    <input type="hidden" name="bus_id" value="{{ bus[0] }}">
+                    <label for="passenger_name">Passenger Name:</label>
+                    <input type="text" name="passenger_name" required>
+                    <label for="passenger_age">Passenger Age:</label>
+                    <input type="number" name="passenger_age" required>
+                    <input type="submit" value="Book">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>    
